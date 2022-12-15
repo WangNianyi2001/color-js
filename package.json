@@ -1,6 +1,6 @@
 {
 	"name": "@nianyi-wang/color",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "JS library for color manipulations",
 	"type": "module",
 	"main": "build/color.mjs",

@@ -21,12 +21,10 @@ import Gradient from './build/gradient.mjs';
 }
 
 {	// Gradient
-	const a = new Color([1, 1, 1]);
-	const b = new Color([0, 0, 0]);
-	const c = Color.Scale(.3)(a);
 	const gradient = new Gradient([
-		{ color: a, position: 0 },
-		{ color: b, position: 1 },
+		{ color: Color.FromHex('#000'), position: 0 },
+		{ color: Color.FromHex('#484'), position: .5 },
+		{ color: Color.FromHex('#fff'), position: 1 },
 	]);
-	console.assert(Color.Equals(c, gradient.GetColor(.3)));
+	console.assert(Color.Equals(gradient.GetColor(.25), Color.FromHex('#242')));
 }

@@ -33,18 +33,15 @@ export default class Gradient {
 	GetColor(position: number) {
 		if(!this.pivots.length)
 			return null;
-		let left = this.pivots[0], right = this.pivots[this.pivots.length - 1];
-		const li = this.pivots.findIndex(p => p.position > position) - 1;
-		if(li >= 0)
-			left = this.pivots[li];
-		let ri;
-		for(ri = this.pivots.length - 1; ri >= 0; --ri) {
-			if(this.pivots[ri].position < position)
-				break;
-		}
-		++ri;
-		if(ri < this.pivots.length)
-			right = this.pivots[ri];
+		let li = this.pivots.findIndex(p => p.position >= position);
+		if(li < 0)
+			li = 0;
+		let ri = this.pivots.findIndex(p => p.position >= position) - 1;
+		if(ri < 0)
+			ri = 0;
+		let left = this.pivots[li], right = this.pivots[ri];
+		if(left.position === right.position)
+			return left.position;
 		const blend = (position - left.position) / (right.position - left.position);
 		return Color.AlphaBlend(blend)(left.color, right.color);
 	}
