@@ -41,7 +41,7 @@ export default class Gradient {
 			ri = 0;
 		let left = this.pivots[li], right = this.pivots[ri];
 		if(left.position === right.position)
-			return left.position;
+			return left.color;
 		const blend = (position - left.position) / (right.position - left.position);
 		return Color.AlphaBlend(blend)(left.color, right.color);
 	}
