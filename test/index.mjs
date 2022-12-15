@@ -1,5 +1,5 @@
-import Color from '../src/color.mts';
-import Gradient from '../src/gradient.mts';
+import Color from '../build/color.mjs';
+import Gradient from '../build/gradient.mjs';
 
 /** @type{ HTMLCanvasElement } */
 const cvs = document.getElementById('cvs');
