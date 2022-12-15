@@ -1,0 +1,23 @@
+{
+	"name": "@nianyi-wang/color",
+	"version": "0.0.1",
+	"description": "JS library for color manipulations",
+	"type": "module",
+	"main": "build/color.mjs",
+	"files": [
+		"build/**/*"
+	],
+	"keywords": [
+		"javascript-library",
+		"color"
+	],
+	"author": "Nianyi <wangnianyi2001@outlook.com>",
+	"scripts": {
+		"prebuild": "rm -rf build/*",
+		"build": "npx tsc --build",
+		"test": "node test.mjs"
+	},
+	"devDependencies": {
+		"typescript": "^4.9.4"
+	}
+}

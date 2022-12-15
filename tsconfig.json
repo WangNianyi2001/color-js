@@ -1,0 +1,12 @@
+{
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"outDir": "build",
+		"declaration": true,
+		"moduleResolution": "NodeNext",
+		"target": "ESNext",
+		"lib": ["DOM", "ESNext"],
+		"allowJs": true,
+		"strictNullChecks": true,
+	}
+}
