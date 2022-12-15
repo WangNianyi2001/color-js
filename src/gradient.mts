@@ -30,19 +30,25 @@ export default class Gradient {
 		this.pivots.splice(index, 1);
 	}
 
-	GetColor(position: number) {
+	GetBlending(position: number) {
 		if(!this.pivots.length)
 			return null;
-		let li = this.pivots.findIndex(p => p.position >= position);
+		let li = this.pivots.findIndex(p => p.position >= position) - 1;
 		if(li < 0)
 			li = 0;
-		let ri = this.pivots.findIndex(p => p.position >= position) - 1;
+		let ri = this.pivots.findIndex(p => p.position >= position);
 		if(ri < 0)
 			ri = 0;
 		let left = this.pivots[li], right = this.pivots[ri];
 		if(left.position === right.position)
-			return left.color;
+			return { left: left.color, right: left.color, blend: 0 };
 		const blend = (position - left.position) / (right.position - left.position);
-		return Color.AlphaBlend(blend)(left.color, right.color);
+		return { left: left.color, right: right.color, blend };
+	}
+	GetColor(position: number) {
+		const blending = this.GetBlending(position);
+		if(!blending)
+			return null;
+		return Color.AlphaBlend(blending.blend)(blending.left, blending.right);
 	}
 }

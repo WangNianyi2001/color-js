@@ -55,12 +55,12 @@ export default class Color {
 			return false;
 		return Color.#Keys(a).every(i => a.GetChannel(i) === b.GetChannel(i));
 	}
-	static Difference(a: Color, b: Color) {
+	static Distance(a: Color, b: Color) {
 		if(a.dimension !== b.dimension)
 			return NaN;
-		return Color.#Keys(a)
+		return Math.sqrt(Color.#Keys(a)
 			.map(i => Math.pow(a.GetChannel(i) - b.GetChannel(i), 2))
-			.reduce((a, b) => a + b, 0);
+			.reduce((a, b) => a + b, 0));
 	}
 
 	static Map = (fn: (v: number) => number) => (color: Color) => new Color(color.components.map(fn));
@@ -78,6 +78,6 @@ export default class Color {
 
 	static Scale = Color.MapGenerator((scalor: number) => (v: number) => scalor * v);
 	static Plus = Color.Blend((a: number, b: number) => a + b);
-	static AlphaBlend = Color.BlendGenerator((alpha: number) => (a: number, b: number) => alpha * a + (alpha - 1) * b);
+	static AlphaBlend = Color.BlendGenerator((alpha: number) => (a: number, b: number) => (1 - alpha) * a + alpha * b);
 	static Bytewise = Color.Map((v: number) => Clamp(v, 0, 0xff) & 0xff);
 }

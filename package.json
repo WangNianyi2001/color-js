@@ -15,9 +15,10 @@
 	"scripts": {
 		"prebuild": "rm -rf build/*",
 		"build": "npx tsc --build",
-		"test": "node test.mjs"
+		"test": "npx vite dev"
 	},
 	"devDependencies": {
-		"typescript": "^4.9.4"
+		"typescript": "^4.9.4",
+		"vite": "^4.0.1"
 	}
 }
